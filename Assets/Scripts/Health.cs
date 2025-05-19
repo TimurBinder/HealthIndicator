@@ -5,13 +5,12 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float _health;
 
-    public event Action OnHealthChange;
+    public event Action HealthChanged;
 
     public float MaxValue => _health;
     public float Value { get; private set; }
-    public bool IsAlive => Value > 0;
 
-    protected virtual void Awake()
+    private void Awake()
     {
         Value = MaxValue;
     }
@@ -19,10 +18,11 @@ public class Health : MonoBehaviour
     public void Reduce(float health)
     {
         Value -= health;
-        OnHealthChange?.Invoke();
 
-        if (IsAlive == false)
-            Destroy(gameObject);
+        if (Value < 0)
+           Value = 0;
+
+        HealthChanged?.Invoke();
     }
 
     public void Add(float health)
@@ -32,6 +32,6 @@ public class Health : MonoBehaviour
         if (Value > MaxValue)
             Value = MaxValue;
 
-        OnHealthChange?.Invoke();
+        HealthChanged?.Invoke();
     }
 }

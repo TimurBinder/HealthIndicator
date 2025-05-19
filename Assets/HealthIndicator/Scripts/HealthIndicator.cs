@@ -5,7 +5,7 @@ public abstract class HealthIndicator : MonoBehaviour
 {
     [SerializeField] protected Health Health;
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         SetMax();
         SetCurrent();
@@ -13,12 +13,12 @@ public abstract class HealthIndicator : MonoBehaviour
 
     private void OnEnable()
     {
-        Health.OnHealthChange += SetCurrent;
+        Health.HealthChanged += SetCurrent;
     }
 
     private void OnDisable()
     {
-        Health.OnHealthChange -= SetCurrent;
+        Health.HealthChanged -= SetCurrent;
     }
 
     protected virtual void SetMax() {}
