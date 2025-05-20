@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float _health;
+    [SerializeField] private float _value;
 
     public event Action Changed;
 
-    public float MaxValue => _health;
+    public float MaxValue => _value;
     public float Value { get; private set; }
 
     private void Awake()
@@ -28,12 +28,12 @@ public class Health : MonoBehaviour
         Changed?.Invoke();
     }
 
-    public void Add(float health)
+    public void Add(float value)
     {
-        if (health < 0)
+        if (value < 0)
             return;
 
-        Value += health;
+        Value += value;
 
         if (Value > MaxValue)
             Value = MaxValue;

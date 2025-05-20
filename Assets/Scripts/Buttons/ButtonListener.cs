@@ -9,8 +9,20 @@ public class ButtonListener : MonoBehaviour
 
     protected Button Button;
 
-    protected virtual void Awake()
+    private void Awake()
     {
         Button = GetComponent<Button>();
     }
+
+    private void OnEnable()
+    {
+        Button.onClick.AddListener(Attack);
+    }
+
+    private void OnDisable()
+    {
+        Button.onClick.RemoveListener(Attack);
+    }
+
+    protected virtual void Attack() { }
 }
