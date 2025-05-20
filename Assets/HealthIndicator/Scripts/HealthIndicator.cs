@@ -13,12 +13,12 @@ public abstract class HealthIndicator : MonoBehaviour
 
     private void OnEnable()
     {
-        Health.HealthChanged += SetCurrent;
+        Health.Changed += SetCurrent;
     }
 
     private void OnDisable()
     {
-        Health.HealthChanged -= SetCurrent;
+        Health.Changed -= SetCurrent;
     }
 
     protected virtual void SetMax() {}
