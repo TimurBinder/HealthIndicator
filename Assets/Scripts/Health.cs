@@ -15,12 +15,12 @@ public class Health : MonoBehaviour
         Value = MaxValue;
     }
 
-    public void Reduce(float health)
+    public void Reduce(float value)
     {
-        if (health < 0)
+        if (value < 0)
             return;
 
-        Value -= health;
+        Value -= value;
 
         if (Value < 0)
            Value = 0;
